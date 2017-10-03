@@ -1,3 +1,8 @@
+import math
+
 class PermutationCalc(object):
     def calc_permutation(self, number_of_objects, objects_chosen):
-        pass
+        return (math.factorial(number_of_objects))/(math.factorial(number_of_objects - objects_chosen))
+
+#perm = PermutationCalc()
+#print perm.calc_permutation(16, 0)

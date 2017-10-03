@@ -44,3 +44,6 @@ class Test4(unittest.TestCase):
         expected_output = 1
         actual_output = PermutationCalc.calc_permutation(permutation, number_of_objects, objects_chosen)
         self.assertEqual(expected_output, actual_output, 'Permutation of 16 choose 0 is 1')
+
+if __name__ == '__main__':
+    unittest.main()
