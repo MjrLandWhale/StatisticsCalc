@@ -1,9 +1,20 @@
 import unittest
 from list_parser import list_parser
 
-#Test parsing single value single digit input
-class test_1(unittest.TestCase):
-    def test_parse(self):
+
+class test(unittest.TestCase):
+
+    #Test parsing an empty string
+    def test_parse_empty_string(self):
+        list = list_parser()
+
+        input = ""
+        expected = []
+        actual = list_parser.parse_list(list, input)
+        self.assertEqual(expected,actual, "list = []")
+
+    # Test parsing single value single digit input
+    def test_parse_singleval_singledig(self):
         list = list_parser()
 
         input = "1"
@@ -13,8 +24,7 @@ class test_1(unittest.TestCase):
 
 
 # Test parsing multi value single digit input
-class test_2(unittest.TestCase):
-    def test_parse(self):
+    def test_parse_multival_singledig(self):
         list = list_parser()
 
         input = "1,4,7,8,1,7"
@@ -24,8 +34,7 @@ class test_2(unittest.TestCase):
 
 
 # Test parsing single value multi digit input
-class test_3(unittest.TestCase):
-    def test_parse(self):
+    def test_parse_singleval_multidig(self):
         list = list_parser()
 
         input = "1784"
@@ -34,8 +43,7 @@ class test_3(unittest.TestCase):
         self.assertEqual(expected, actual, "list = [1784]")
 
 # Test parsing multi value multi digit input
-class test_4(unittest.TestCase):
-    def test_parse(self):
+    def test_parse_multival_multidig(self):
         list = list_parser()
 
         input = "178,518,43,32,2,48"
