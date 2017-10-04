@@ -2,7 +2,7 @@ import unittest
 from mode import ModeCalc
 
 #test where mode is a single number
-class Test1(unittest.TestCase):
+class Test(unittest.TestCase):
 	def test_mode(self):
 		mode = ModeCalc()
 
@@ -11,8 +11,7 @@ class Test1(unittest.TestCase):
 		actual_output1 = ModeCalc.calculate_mode(mode, input1)
 		self.assertEqual(expected_output1, actual_output1, 'mode = 3')
 
-#test where mode is two numbers
-class Test2(unittest.TestCase):
+	#test where mode is two numbers
 	def test_mode2(self):
 		mode = ModeCalc()
 
@@ -21,8 +20,7 @@ class Test2(unittest.TestCase):
 		actual_output2 = ModeCalc.calculate_mode(mode, input2)
 		self.assertEqual(expected_output2, actual_output2, 'mode = 2, 4')
 
-#test where mode is three numbers
-class Test3(unittest.TestCase):
+	#test where mode is three numbers
 	def test_mode3(self):
 		mode = ModeCalc()
 
@@ -31,8 +29,7 @@ class Test3(unittest.TestCase):
 		actual_output3 = ModeCalc.calculate_mode(mode, input3)
 		self.assertEqual(expected_output3, actual_output3, 'mode = 1, 2, 4')
 
-#test where all numbers occur once
-class Test4(unittest.TestCase):
+	#test where all numbers occur once
 	def test_mode4(self):
 		mode = ModeCalc()
 
@@ -41,8 +38,7 @@ class Test4(unittest.TestCase):
 		actual_output4 = ModeCalc.calculate_mode(mode, input4)
 		self.assertEqual(expected_output4, actual_output4, 'mode = 1, 2, 3, 4')
 
-#test will there is only one number
-class Test5(unittest.TestCase):
+	#test will there is only one number
 	def test_mode5(self):
 		mode = ModeCalc()
 

@@ -2,7 +2,7 @@ import unittest
 from permutation import PermutationCalc
 
 #general permutation calculation
-class Test1(unittest.TestCase):
+class Test(unittest.TestCase):
     def test_permutation(self):
         permutation = PermutationCalc()
 
@@ -12,8 +12,7 @@ class Test1(unittest.TestCase):
         actual_output = PermutationCalc.calc_permutation(permutation, number_of_objects, objects_chosen)
         self.assertEqual(expected_output, actual_output, 'Permutation of 7 choose 2 is 42')
 
-#one object is selected
-class Test2(unittest.TestCase):
+    #one object is selected
     def test_permutation2(self):
         permutation = PermutationCalc()
 
@@ -23,8 +22,7 @@ class Test2(unittest.TestCase):
         actual_output = PermutationCalc.calc_permutation(permutation, number_of_objects, objects_chosen)
         self.assertEqual(expected_output, actual_output, 'Permutation of 11 choose 1 is 11')
 
-#all objects are selected
-class Test3(unittest.TestCase):
+    #all objects are selected
     def test_permutation3(self):
         permutation = PermutationCalc()
 
@@ -34,8 +32,7 @@ class Test3(unittest.TestCase):
         actual_output = PermutationCalc.calc_permutation(permutation, number_of_objects, objects_chosen)
         self.assertEqual(expected_output, actual_output, 'Permutation of 8 choose 8 is 40320')
 
-#no object is selected
-class Test4(unittest.TestCase):
+    #no object is selected
     def test_permutation4(self):
         permutation = PermutationCalc()
 
