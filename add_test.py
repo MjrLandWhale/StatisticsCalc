@@ -6,7 +6,7 @@ class Test1(unittest.TestCase):
 		math = MyMath()
 		input_a = 4
 		input_b = 6
-		expected_output = 7
+		expected_output = 10
 		actual_output = MyMath.add(math, input_a, input_b)
 		self.assertEqual(expected_output, actual_output, '%d + %d = %d' % (input_a, input_b, actual_output))
 
