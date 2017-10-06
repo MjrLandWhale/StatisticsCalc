@@ -31,7 +31,7 @@ class TestMedianOneNum(unittest.TestCase):
 	def test_median_one_num(self):
 		median = MedianCalc()
 
-		number_list = 5 # number_list for test (length = 1)
+		number_list = [5] # number_list for test (length = 1)
 
 		expected_output = None # expected output for number_list
 		actual_output = MedianCalc.calculate_median(median, number_list) # calculated value for number_list
