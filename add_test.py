@@ -1,6 +1,7 @@
 import unittest
 from StatisticsCalc import MyMath
 
+
 class Test1(unittest.TestCase):
 	def test_add_two_nums_and_correctly_report_sum(self):
 		math = MyMath()
