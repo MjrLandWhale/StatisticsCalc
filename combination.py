@@ -5,4 +5,4 @@ class CombinationCalc(object):
         return (math.factorial(number_of_objects))/((math.factorial(number_of_objects - objects_chosen)) * (math.factorial(objects_chosen)))
 
 comb = CombinationCalc()
-print comb.calc_combination(18, 9)
+#print comb.calc_combination(18, 9)
