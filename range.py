@@ -13,4 +13,3 @@ class RangeCalc(object):
 # number_list = [2, 3, 5, 7]
 # range_num = RangeCalc()
 # print range_num.calculate_range(number_list)
-
