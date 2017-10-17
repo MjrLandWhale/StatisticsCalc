@@ -42,5 +42,25 @@ class Test(unittest.TestCase):
         actual_output = PermutationCalc.calc_permutation(permutation, number_of_objects, objects_chosen)
         self.assertEqual(expected_output, actual_output, 'Permutation of 16 choose 0 is 1')
 
+    #objects chosen is larger than objects available
+    def test_permutation5(self):
+        permutation = PermutationCalc()
+
+        number_of_objects = 16
+        objects_chosen = 18
+        expected_output = None
+        actual_output = PermutationCalc.calc_permutation(permutation, number_of_objects, objects_chosen)
+        self.assertEqual(expected_output, actual_output, 'Objects less than chosen failed.')
+
+    #nonsense test
+    def test_permutation6(self):
+        permutation = PermutationCalc()
+
+        number_of_objects = 16
+        objects_chosen = 'han solo'
+        expected_output = None
+        actual_output = PermutationCalc.calc_permutation(permutation, number_of_objects, objects_chosen)
+        self.assertEqual(expected_output, actual_output, 'nonsense test failed')
+
 if __name__ == '__main__':
     unittest.main()

@@ -43,5 +43,25 @@ class Test(unittest.TestCase):
         actual_output = CombinationCalc.calc_combination(combination, number_of_objects, objects_chosen)
         self.assertEqual(expected_output, actual_output, 'Combination of 18 choose 0 is 1')
 
+    #objects chosen are larger than objects available
+    def test_combination5(self):
+        combination = CombinationCalc()
+
+        number_of_objects = 18
+        objects_chosen = 20
+        expected_output = None
+        actual_output = CombinationCalc.calc_combination(combination, number_of_objects, objects_chosen)
+        self.assertEqual(expected_output, actual_output, 'Chosen larger than available test failed')
+
+    #nonsense test
+    def test_combination6(self):
+        combination = CombinationCalc()
+
+        number_of_objects = 'waluigi'
+        objects_chosen = 0
+        expected_output = None
+        actual_output = CombinationCalc.calc_combination(combination, number_of_objects, objects_chosen)
+        self.assertEqual(expected_output, actual_output, 'Nonsense test failed')
+
 if __name__ == '__main__':
     unittest.main()
