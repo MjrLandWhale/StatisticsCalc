@@ -47,5 +47,6 @@ class Test(unittest.TestCase):
 		actual_output5 = ModeCalc.calculate_mode(mode, input5)
 		self.assertEqual(expected_output5, actual_output5, 'mode = 2')
 
+
 if __name__ == '__main__':
 	unittest.main()
