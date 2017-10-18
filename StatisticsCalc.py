@@ -2,12 +2,14 @@ import sys, os, string
 from mean import MeanCalc
 from list_parser import ListParser
 from mode import ModeCalc
+from variance import VarianceCalc
 from binomial import BinomialCalc
 
 # Define static variables and objects
 mean_calc = MeanCalc()
 mode_calc = ModeCalc()
-variance = BinomialCalc()
+binomial = BinomialCalc()
+variance = VarianceCalc()
 
 
 def main():
@@ -78,11 +80,16 @@ def main():
                 output = ModeCalc.calculate_mode(mode_calc, parsed_list)
 
             # elif function == '':
-            elif function == 'variance':
-                output = BinomialCalc.binomial_calc(binomial, )
+            elif function == 'binomial':
+                if len(parsed_list) != 3:
+                    output = 'Binomial function takes three inputs. \n' \
+                             'binomial(success probability, number of trials, number of successes)'
+                else:
+                    output = BinomialCalc.binomial_calc(binomial, parsed_list[0], parsed_list[1], parsed_list[2])
         else:
             output = 'Unknown function.'
-        print output
+        if output is not None:
+            print output
 
 
 if __name__ == '__main__':
