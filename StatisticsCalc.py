@@ -5,6 +5,7 @@ from mode import ModeCalc
 from variance import VarianceCalc
 from binomial import BinomialCalc
 from median import MedianCalc
+from range import RangeCalc
 
 # Define static variables and objects
 mean_calc = MeanCalc()
@@ -12,6 +13,7 @@ mode_calc = ModeCalc()
 binomial = BinomialCalc()
 variance = VarianceCalc()
 median = MedianCalc()
+range = RangeCalc()
 
 
 def main():
@@ -84,6 +86,7 @@ def main():
             # elif function == '':
             # Handle binomial calculation
             elif function == 'binomial':
+                print parsed_list[0], parsed_list[1], parsed_list[2]
                 if len(parsed_list) != 3: # If there are not exactly three inputs, tell the user
                     output = 'Binomial function takes three inputs. \n' \
                              'binomial(success probability, number of trials, number of successes)'
@@ -91,6 +94,8 @@ def main():
                     output = BinomialCalc.binomial_calc(binomial, parsed_list[0], parsed_list[1], parsed_list[2])
             elif function == 'median':
                 output = MedianCalc.calculate_median(median, parsed_list)
+            elif function == 'range':
+                output = RangeCalc.calculate_range(range, parsed_list)
         else:
             output = 'Unknown function.'
         if output is not None:
