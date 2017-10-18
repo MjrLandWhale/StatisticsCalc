@@ -19,7 +19,7 @@ class ListParser(object):
             # Parse single value single digit input
             elif len(str) == 1:
                 # convert single value into numerical form
-                parsed_list.append(int(str))
+                parsed_list.append(float(str))
                 # parsed_list.append(ord(str)-48)
 
             # Parse larger lists
@@ -29,7 +29,7 @@ class ListParser(object):
 
                 # Iterate through resulting list of values and append to list to be returned
                 for i in split_input:
-                    parsed_list.append(int(i))
+                    parsed_list.append(float(i))
 
             return parsed_list
 
