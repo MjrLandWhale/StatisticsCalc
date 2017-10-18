@@ -3,7 +3,7 @@ from range import RangeCalc
 
 
 # test for range with list of numbers
-class TestRange(unittest.TestCase):
+class RangeTest(unittest.TestCase):
     def test_range_list(self):
         range_num = RangeCalc()
 

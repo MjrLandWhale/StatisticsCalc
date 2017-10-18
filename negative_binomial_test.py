@@ -1,9 +1,9 @@
 import unittest
 from negative_binomial import NegativeBinomialDist
 
-class Test(unittest.TestCase):
 
-    #negative number tests
+class NegativeBinomialTest(unittest.TestCase):
+    # negative number tests
     def test_neg_binomial(self):
         neg_binomial = NegativeBinomialDist()
 
@@ -74,7 +74,7 @@ class Test(unittest.TestCase):
         actual_output = NegativeBinomialDist.neg_binomial_calc(neg_binomial, success_prob, failures, successes)
         self.assertEqual(expected_output, actual_output, 'Negative test failed')
 
-    #zero for success test
+    # zero for success test
     def test_neg_binomial8(self):
         neg_binomial = NegativeBinomialDist()
 
@@ -85,7 +85,7 @@ class Test(unittest.TestCase):
         actual_output = NegativeBinomialDist.neg_binomial_calc(neg_binomial, success_prob, failures, successes)
         self.assertEqual(expected_output, actual_output, 'Zero success test failed')
 
-    #zero for success_prob test
+    # zero for success_prob test
     def test_neg_binomial9(self):
         neg_binomial = NegativeBinomialDist()
 
@@ -96,7 +96,7 @@ class Test(unittest.TestCase):
         actual_output = NegativeBinomialDist.neg_binomial_calc(neg_binomial, success_prob, failures, successes)
         self.assertEqual(expected_output, actual_output, 'Zero success_prob test failed')
 
-    #both successes and success_prob zero test
+    # both successes and success_prob zero test
     def test_neg_binomial10(self):
         neg_binomial = NegativeBinomialDist()
 
@@ -107,7 +107,7 @@ class Test(unittest.TestCase):
         actual_output = NegativeBinomialDist.neg_binomial_calc(neg_binomial, success_prob, failures, successes)
         self.assertEqual(expected_output, actual_output, 'Zero success_prob and successes test failed')
 
-    #zero failures
+    # zero failures
     def test_neg_binomial11(self):
         neg_binomial = NegativeBinomialDist()
 
@@ -118,7 +118,7 @@ class Test(unittest.TestCase):
         actual_output = NegativeBinomialDist.neg_binomial_calc(neg_binomial, success_prob, failures, successes)
         self.assertEqual(expected_output, actual_output, 'Zero failures test failed')
 
-    #general test
+    # general test
     def test_neg_binomial12(self):
         neg_binomial = NegativeBinomialDist()
 
@@ -129,7 +129,7 @@ class Test(unittest.TestCase):
         actual_output = NegativeBinomialDist.neg_binomial_calc(neg_binomial, success_prob, failures, successes)
         self.assertEqual(expected_output, actual_output, 'General test failed')
 
-    #nonsense test
+    # nonsense test
     def test_neg_binomial13(self):
         neg_binomial = NegativeBinomialDist()
 
@@ -139,6 +139,7 @@ class Test(unittest.TestCase):
         expected_output = None
         actual_output = NegativeBinomialDist.neg_binomial_calc(neg_binomial, success_prob, failures, successes)
         self.assertEqual(expected_output, actual_output, 'Nonsense test failed')
+
 
 if __name__ == '__main__':
     unittest.main()

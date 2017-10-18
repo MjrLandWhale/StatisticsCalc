@@ -1,7 +1,8 @@
 import math
 from combination import CombinationCalc
 
-#returns the probability of having a certain number of failures before you have a certain number of successes
+
+# returns the probability of having a certain number of failures before you have a certain number of successes
 class NegativeBinomialDist(object):
     def neg_binomial_calc(self, success_prob, failures, successes):
         comb = CombinationCalc()

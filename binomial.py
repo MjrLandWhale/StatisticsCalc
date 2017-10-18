@@ -1,7 +1,7 @@
 import math
 from combination import CombinationCalc
 
-class BinomialDist(object):
+class BinomialCalc(object):
     def binomial_calc(self, success_prob, trials, successes):
         result = []
         comb = CombinationCalc()

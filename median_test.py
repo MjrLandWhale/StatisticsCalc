@@ -3,7 +3,7 @@ from median import MedianCalc
 
 
 # test for range with list of numbers with odd list length
-class TestMedian(unittest.TestCase):
+class MedianTest(unittest.TestCase):
     def test_median_list_odd(self):
         median = MedianCalc()
 

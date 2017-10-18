@@ -1,17 +1,17 @@
 class ModeCalc(object):
     def calculate_mode(self, lst):
         mode = []
-        maxCount = 0
+        max_count = 0
 
-        #finds the maximum occurrence of repeated numbers in the list
+        # finds the maximum occurrence of repeated numbers in the list
         for i in range(len(lst)):
             count = lst.count(lst[i])
-            if count > maxCount:
-                maxCount = count
+            if count > max_count:
+                max_count = count
 
-        #finds all numbers that occur as many times as the max occurrence
+        # finds all numbers that occur as many times as the max occurrence
         for i in range(len(lst)):
-            if lst.count(lst[i]) == maxCount:
+            if lst.count(lst[i]) == max_count:
                 mode.append(lst[i])
 
         return list(set(mode))

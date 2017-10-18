@@ -1,12 +1,13 @@
 import sys, os
 from mean import MeanCalc
-from list_parser import list_parser
+from list_parser import ListParser
 from mode import ModeCalc
+
 
 def main():
     print("Welcome to StatisticsCalc. You may begin calculating. Type 'help' and hit enter to view list of functions.")
     while True:
-        list = list_parser()
+        list_parser = ListParser()
         user_input = raw_input('>>\t')
         output = ''
 
@@ -22,7 +23,7 @@ def main():
         elif '(' in user_input:
             function = user_input[0:user_input.find("(")]
             string = user_input[user_input.find("(") + 1:user_input.find(")")]
-            parsed_list = list_parser.parse_list(list, string)
+            parsed_list = ListParser.parse_list(list_parser, string)
             if function == '':
                 output = 'No function entered.'
             elif function == 'mean':
