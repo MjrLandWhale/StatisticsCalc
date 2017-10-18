@@ -67,5 +67,25 @@ class Test(unittest.TestCase):
         actual_output = Zscore.calc_zscore(zscore, raw_score, population_mean, standard_deviation)
         self.assertEqual(expected_output, actual_output, 'Input check failed')
 
+    #test calculating zscore from a list
+    def test_zscore7(self):
+        zscore = Zscore()
+
+        raw_score = 12.67
+        lst = [4, 7.4, 3.2, 6, 5.321, 8, 1]
+        expected_output = 3.1313
+        actual_output = Zscore.calc_zscore_from_list(zscore, raw_score, lst)
+        self.assertEqual(expected_output, actual_output, 'Zscore from list test failed')
+
+    #nonsense entered into calculate zscore from list test
+    def test_zscore8(self):
+        zscore = Zscore()
+
+        raw_score = 12.67
+        lst = 'rubber duck'
+        expected_output = None
+        actual_output = Zscore.calc_zscore_from_list(zscore, raw_score, lst)
+        self.assertEqual(expected_output, actual_output, 'Nonsense test failed')
+
 if __name__ == '__main__':
     unittest.main()
