@@ -4,12 +4,14 @@ from list_parser import ListParser
 from mode import ModeCalc
 from variance import VarianceCalc
 from binomial import BinomialCalc
+from median import MedianCalc
 
 # Define static variables and objects
 mean_calc = MeanCalc()
 mode_calc = ModeCalc()
 binomial = BinomialCalc()
 variance = VarianceCalc()
+median = MedianCalc()
 
 
 def main():
@@ -87,6 +89,8 @@ def main():
                              'binomial(success probability, number of trials, number of successes)'
                 else:
                     output = BinomialCalc.binomial_calc(binomial, parsed_list[0], parsed_list[1], parsed_list[2])
+            elif function == 'median':
+                output = MedianCalc.calculate_median(median, parsed_list)
         else:
             output = 'Unknown function.'
         if output is not None:
