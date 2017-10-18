@@ -1,5 +1,6 @@
 import math
 
+
 class CombinationCalc(object):
     def calc_combination(self, number_of_objects, objects_chosen):
         try:

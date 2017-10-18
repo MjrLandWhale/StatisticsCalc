@@ -80,8 +80,9 @@ def main():
                 output = ModeCalc.calculate_mode(mode_calc, parsed_list)
 
             # elif function == '':
+            # Handle binomial calculation
             elif function == 'binomial':
-                if len(parsed_list) != 3:
+                if len(parsed_list) != 3: # If there are not exactly three inputs, tell the user
                     output = 'Binomial function takes three inputs. \n' \
                              'binomial(success probability, number of trials, number of successes)'
                 else:
