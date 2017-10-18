@@ -19,7 +19,7 @@ class BinomialCalc(object):
 
                 #X < number of success
                 less = 0
-                for i in range(successes):
+                for i in range(int(successes)):
                     less += (comb.calc_combination(trials, i)) * math.pow(success_prob, i) * math.pow(1 - success_prob, trials - i)
                 result.append(less)
 
@@ -37,10 +37,10 @@ class BinomialCalc(object):
                     result[i] = round(result[i], 4)
 
             except:
-                print 'An error occurred. Enter only numbers for the parameters.'
+                print 'An error occurred. Enter only numbers for the parameters. Binomial'
                 return
 
         return result
 
-#bin = BinomialDist()
-#print bin.binomial_calc('donkey kong', 5, 3)
+bin = BinomialCalc()
+print bin.binomial_calc(0.5, 5.0, 3)
