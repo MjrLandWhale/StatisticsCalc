@@ -1,5 +1,3 @@
-
-
 class mean(object):
 
     def calculate_mean(self, list):

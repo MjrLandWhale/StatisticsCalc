@@ -3,7 +3,7 @@ from range import RangeCalc
 
 
 # test for range with list of numbers
-class TestRangeList(unittest.TestCase):
+class TestRange(unittest.TestCase):
     def test_range_list(self):
         range_num = RangeCalc()
 
@@ -14,9 +14,7 @@ class TestRangeList(unittest.TestCase):
 
         self.assertEqual(expected_output, actual_output, 'range = %d' % actual_output)
 
-
-# test for range with one number in list
-class TestRangeOneNum(unittest.TestCase):
+    # test for range with one number in list
     def test_range_one_num(self):
         range_num = RangeCalc()
 
