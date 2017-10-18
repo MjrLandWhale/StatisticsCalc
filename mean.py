@@ -1,4 +1,4 @@
-class mean(object):
+class MeanCalc(object):
 
     def calculate_mean(self, list):
         mean = 0

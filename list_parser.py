@@ -34,5 +34,5 @@ class list_parser(object):
 
         #Handle any unknown exceptions taking place and return an empty list
         except:
-            print "an unknown error occured while attempting to parse input"
+            print "An unknown error occurred while attempting to parse input."
             return []
