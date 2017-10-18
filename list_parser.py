@@ -8,7 +8,7 @@ class list_parser(object):
         #attempt parsing
         try:
             #Strip leading and trailing list delimiters [,],(,) if they exist
-            for i in ['[',']','(',')']:
+            for i in ['[',']','(',')','{','}']:
                 str = string.replace(str,i,'')
 
             #If input is empty, return an empty list
