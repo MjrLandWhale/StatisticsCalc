@@ -42,5 +42,5 @@ class BinomialCalc(object):
 
         return result
 
-bin = BinomialCalc()
-print bin.binomial_calc(0.5, 5.0, 3)
+# bin = BinomialCalc()
+# print bin.binomial_calc(0.5, 5.0, 3)
