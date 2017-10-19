@@ -27,11 +27,12 @@ def main():
     while True:
 
         # Get user input from command line and store in variable
-        user_input = raw_input('>>\t')
+        user_input = raw_input('>>\t').replace(' ', '')
         # Create output variable
         output = ''
         # Create variable to store name of list
         name_of_list_to_store = ''
+        func = ''
 
         # True when help is called.  Print help text
         if user_input == 'help':
@@ -73,11 +74,10 @@ def main():
             # True when a ( exists in the input.  Indicates a function call.  Check within
             if '(' in user_input:
 
-                # Splits input into separate function call and parameters
+                # splits input into separate function call and parameters
                 split_method = user_input.split('(')
                 func = split_method[0]
                 parameters = split_method[1]
-                print parameters
 
                 # List of parsed parameters
                 op_list = []
@@ -104,14 +104,39 @@ def main():
                         if ',' in parameters:
                             end_of_list = parameters.find(',')
                             # Add the single value to the list of values
-                            op_list.append(ListParser.parse_list(list_p, parameters[0:end_of_list]))
+                            #                       op_list.append(ListParser.parse_list(list_p, parameters[0:end_of_list]))
                             # Use +1 to remove the , from the string
+                            #                        parameters = parameters[end_of_list + 1:]
+
+                            op_list.append(float(parameters[0:end_of_list]))
+
                             parameters = parameters[end_of_list + 1:]
 
-                        # No, exists meaning this digit is the only parameter
+                        # No , exists meaning this digit is the only parameter
                         else:
-                            op_list.append(ListParser.parse_list(list_p, parameters))
+                            #                       op_list.append(ListParser.parse_list(list_p, parameters))
+                            op_list.append(float(parameters.strip(')')))
                             break
+
+                    # If a letter that means its a variable name
+                    elif parameters[0].isalpha():
+                        var_name = ''
+                        end_of_name = ''
+                        # find the end of the variable name
+
+                        # If we have multiple parameters
+                        if ',' in parameters:
+                            end_of_name = parameters.find(',')
+                            var_name = parameters[0:end_of_name]
+
+                        # One parameter
+                        else:
+                            var_name = parameters.strip(')')
+
+                        op_list.append(ListStorage.retrieve_list(storage, var_name))
+
+                        parameters = parameters[end_of_name + 1:]
+
 
                     # If we hit ) then we have finished iterating the list
                     elif parameters[0] is ')':
@@ -119,11 +144,12 @@ def main():
                     # This case is just so we don't get hung up on some weird bug and will always leave
                     else:
                         break
+            # When true means we just want to print a variable to output
+            elif user_input[0].isalpha():
 
+                func = 'retrieve'
 
-
-
-                    ############Function calls below#########
+                ############Function calls below#########
 
                 # Handle Error condition when no function name is entered
                 if func == '':
@@ -137,26 +163,31 @@ def main():
                 elif func == 'mode':
                     output = ModeCalc.calculate_mode(mode_calc, op_list[0])
 
-                # elif function == '':
-                # Handle binomial calculation
-                elif func == 'binomial':
-                    print op_list[0], op_list[1], op_list[2]
-                    if len(op_list) != 3:  # If there are not exactly three inputs, tell the user
-                        output = 'Binomial function takes three inputs. \n' \
-                                 'binomial(success probability, number of trials, number of successes)'
-                    else:
-                        output = BinomialCalc.binomial_calc(binomial, op_list[0], op_list[1], op_list[2])
-                elif func == 'median':
-                    output = MedianCalc.calculate_median(median, op_list[0])
-                elif func == 'range':
-                    output = RangeCalc.calculate_range(range, op_list[0])
+            # elif function == '':
+            # Handle binomial calculation
+            elif func == 'binomial':
+                print op_list[0], op_list[1], op_list[2]
+                if len(op_list) != 3:  # If there are not exactly three inputs, tell the user
+                    output = 'Binomial function takes three inputs. \n' \
+                             'binomial(success probability, number of trials, number of successes)'
+                else:
+                    output = BinomialCalc.binomial_calc(binomial, op_list[0], op_list[1], op_list[2])
+            elif func == 'median':
+                output = MedianCalc.calculate_median(median, op_list[0])
+            elif func == 'range':
+                output = RangeCalc.calculate_range(range, op_list[0])
+
+            elif func == 'retrieve':
+                output = user_input + " = " + str(ListStorage.retrieve_list(storage, user_input))
             else:
                 print 'Unknown function.'
+                print func
                 continue
 
-        print output
         if name_of_list_to_store is not '':
             ListStorage.store_list(storage, name_of_list_to_store, output)
+            output = name_of_list_to_store + " = " + str(output)
+        print output
 
 
 if __name__ == '__main__':
