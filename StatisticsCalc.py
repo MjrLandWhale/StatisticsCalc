@@ -64,22 +64,8 @@ def main():
 
             #splits input into seperate function call and parameters
             split_method = user_input.split('(')
-            func = ''
-            parameters = ''
-            #Implies no method was called.  Either a value will be stored or spit back out to command line
-            if len(split_method) == 1:
-                output = ListParser.parse_list(list_p,split_method[0])
-
-            #Implies 1 method being called.
-            elif len(split_method) == 2:
-                func = split_method[0]
-                #Save parameters and remove trailing ) because it makes life cleaner
-                parameters = split_method[1]
-
-            #Implies multiple method calls in one line.  I don't want to deal with this right nowe
-            elif len(split_method) >= 3:
-                print "StatisticsCalc can only handle 1 method call per line at this time"
-
+            func = split_method[0]
+            parameters = split_method[1]
 
             #List of parsed parameters
             op_list = []
@@ -140,17 +126,17 @@ def main():
 
             # elif function == '':
             # Handle binomial calculation
-            elif function == 'binomial':
-                print parsed_list[0], parsed_list[1], parsed_list[2]
-                if len(parsed_list) != 3: # If there are not exactly three inputs, tell the user
+            elif func == 'binomial':
+                print op_list[0], op_list[1], op_list[2]
+                if len(op_list) != 3: # If there are not exactly three inputs, tell the user
                     output = 'Binomial function takes three inputs. \n' \
                              'binomial(success probability, number of trials, number of successes)'
                 else:
-                    output = BinomialCalc.binomial_calc(binomial, parsed_list[0], parsed_list[1], parsed_list[2])
-            elif function == 'median':
-                output = MedianCalc.calculate_median(median, parsed_list)
-            elif function == 'range':
-                output = RangeCalc.calculate_range(range, parsed_list)
+                    output = BinomialCalc.binomial_calc(binomial, op_list[0], op_list[1], op_list[2])
+            elif func == 'median':
+                output = MedianCalc.calculate_median(median, op_list)
+            elif func == 'range':
+                output = RangeCalc.calculate_range(range, op_list)
         else:
             print 'Unknown function.'
             continue
