@@ -2,14 +2,18 @@ import sys, os, string
 from mean import MeanCalc
 from list_parser import ListParser
 from mode import ModeCalc
+from list_storage import ListStorage
 from variance import VarianceCalc
 from binomial import BinomialCalc
 from median import MedianCalc
 from range import RangeCalc
 
-# Define static variables and objects
+#Define static variables and objects
 mean_calc = MeanCalc()
 mode_calc = ModeCalc()
+# Create a list parser object
+list_p = ListParser()
+storage = ListStorage()
 binomial = BinomialCalc()
 variance = VarianceCalc()
 median = MedianCalc()
@@ -22,10 +26,7 @@ def main():
     # Program logic occurs inside this infinite loop
     while True:
 
-#########These should all be above the infinite loop
-        # Create a list parser object
-        list = ListParser()
-        # Get user input from command line and store in variable
+        #Get user input from command line and store in variable
         user_input = raw_input('>>\t')
         # Create output variable
         output = ''
@@ -39,49 +40,103 @@ def main():
                      "hit 'enter' to calculate.\n" \
                      "You may use '[]' or '{}' in place of the parentheses.\n" \
                      "Below are examples of how to format and use each function:\n" \
-                     "range(3, 7, 20, 4, 6)\n" \
-                     "median(6, 4, 3, 2)"
+                     "range([3, 7, 20, 4, 6])\n" \
+                     "median([6, 4, 3, 2])"
 
         # True when exit is called.  Leave the program
         elif user_input == 'exit':
             sys.exit(0)
 
-        # True when a = exists.  Indicates output must be stored in a variable
+########Command Line interpretation below
+
+        #True when a '=' exists.  Indicates output must be stored in a variable
         if '=' in user_input:
-
-            # Find where in the input the equal sign is
-            index_of_equals = user_input.find('=')
-            # Create string of the name of the list being stored to
-            name_of_list_to_store = user_input[0:index_of_equals]
-            # Remove any whitespace from the name
-            name_of_list_to_store.strip(' ')
-            
-            # Remove everything up to the equal sign from the input string so it doesn't go haywire
-            user_input = user_input[index_of_equals+1:]
-
-        # True when a ( exists in the input.  Indicates a function call
-        elif '(' or '[' or '{' in user_input:
-            # Create string containing name of the function being called
-            function = user_input[0:user_input.find("(")]
-            # Create string containing the input of a function call
-            string = user_input[user_input.find("(") + 1:user_input.find(")")]
-            # Parse the input of the function into a usable list of ints
-            parsed_list = ListParser.parse_list(list, string)
+            #Split the input on the = sign
+            split_input = user_input.split('=')
+            #Store name of list for later
+            name_of_list_to_store = split_input[0]
+            #Recreate user input
+            user_input = split_input[1]
 
 
-############ Function calls below #########
+        #True when a ( exists in the input.  Indicates a function call.  Check within
+        if '(' in user_input:
 
-            # Handle Error condition when no function name is entered
-            if function == '':
+            #splits input into seperate function call and parameters
+            split_method = user_input.split('(')
+            func = ''
+            parameters = ''
+            #Implies no method was called.  Either a value will be stored or spit back out to command line
+            if len(split_method) == 1:
+                output = ListParser.parse_list(list_p,split_method[0])
+
+            #Implies 1 method being called.
+            elif len(split_method) == 2:
+                func = split_method[0]
+                #Save parameters and remove trailing ) because it makes life cleaner
+                parameters = split_method[1]
+
+            #Implies multiple method calls in one line.  I don't want to deal with this right nowe
+            elif len(split_method) >= 3:
+                print "StatisticsCalc can only handle 1 method call per line at this time"
+
+
+            #List of parsed parameters
+            op_list = []
+            #Iterate through all sets of parameters
+            while True:
+                #catch a list first
+                if parameters[0] is '[':
+
+                    end_of_list = parameters.find(']')
+                    #Add each list to
+                    op_list.append(  ListParser.parse_list(list_p, parameters[ 0:end_of_list ] ))
+
+                    #use +1 in order to remove next , or final )
+                    parameters = parameters[end_of_list+1:]
+
+                    #check to make sure we don't have to leave
+                    if parameters is '':
+                        break
+
+                #If not list, then maybe number?
+                elif parameters[0].isdigit():
+                    #If we have multiple inputs still
+                    if ',' in parameters:
+                        end_of_list = parameters.find(',')
+                        #Add the single value to the list of values
+                        op_list.append( ListParser.parse_list(list_p,parameters[0:end_of_list]) )
+                        #Use +1 to remove the , from the string
+                        parameters = parameters[end_of_list+1:]
+
+                    #No , exists meaning this digit is the only parameter
+                    else:
+                        op_list.append(ListParser.parse_list(list_p,parameters))
+                        break
+
+                #If we hit ) then we have finished iterating the list
+                elif parameters[0] is ')':
+                    break
+                #This case is just so we don't get hung up on some weird bug and will always leave
+                else:
+                    break
+
+
+
+
+############Function calls below#########
+
+            #Handle Error condition when no function name is entered
+            if func == '':
                 output = 'No function entered.'
 
-            # Handle mean calculation
-            elif function == 'mean':
-                output = MeanCalc.calculate_mean(mean_calc, parsed_list)
+            #Handle mean calculation
+            elif func == 'mean':
+                output = MeanCalc.calculate_mean(mean_calc, op_list[0])
 
-            # Handle mode calculation
-            elif function == 'mode':
-                output = ModeCalc.calculate_mode(mode_calc, parsed_list)
+            #Handle mode calculation
+            elif func == 'mode':
+                output = ModeCalc.calculate_mode(mode_calc, op_list[0])
 
             # elif function == '':
             # Handle binomial calculation
@@ -97,9 +152,13 @@ def main():
             elif function == 'range':
                 output = RangeCalc.calculate_range(range, parsed_list)
         else:
-            output = 'Unknown function.'
-        if output is not None:
-            print output
+            print 'Unknown function.'
+            continue
+
+        #
+        print output
+        if name_of_list_to_store is not '':
+            ListStorage.store_list(storage, name_of_list_to_store, output)
 
 
 if __name__ == '__main__':

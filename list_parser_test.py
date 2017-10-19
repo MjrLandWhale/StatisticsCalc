@@ -48,6 +48,14 @@ class ListParserTest(unittest.TestCase):
         actual = ListParser.parse_list(list_parser, user_input)
         self.assertEqual(expected, actual, "list = [178,518,43,32,2,48]")
 
+    # Test parsing multi value multi digit input using decimal values
+    def test_parse_multival_multidig_with_decimal(self):
+        list_parser = ListParser()
+
+        user_input = "178,518.5,43,32,2,48"
+        expected = [178, 518.5, 43, 32, 2, 48]
+        actual = ListParser.parse_list(list_parser, user_input)
+        self.assertEqual(expected, actual, "list = [178,518.5,43,32,2,48]")
 
 if __name__ == '__main__':
     unittest.main()

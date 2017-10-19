@@ -20,6 +20,8 @@ class ListParser(object):
             elif len(str) == 1:
                 # convert single value into numerical form
                 parsed_list.append(float(str))
+                #return float(str)
+
                 # parsed_list.append(ord(str)-48)
 
             # Parse larger lists
